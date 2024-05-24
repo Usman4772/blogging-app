@@ -1,13 +1,22 @@
 "use client"
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { useRef } from 'react';
 import {Editor} from "@tinymce/tinymce-react"
 import axios from 'axios';
-
+import { Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import Nav from '@/components/NavBar/Nav';
+import { GlobalContext } from '@/components/GlobalContext/Context';
+import Menu from '@/components/Menu/Menu';
+import Toast from '@/components/Toasts/Toast';
 function BlogForm() {
   const [image,setImage]=useState<File |null>()
   const titleRef=useRef<HTMLInputElement>(null)
   const editorRef=useRef<any>(null)
+  const fileInputRef=useRef<HTMLInputElement>(null)
+  const {showMenu}=useContext(GlobalContext)
+  const [showToast,setShowToast]=useState(false)
+
     
   function handleOnChange(e:ChangeEvent<HTMLInputElement>){
 if(e.target.files){
@@ -25,23 +34,30 @@ if(e.target.files){
         formData.append("image",image)
       }
 
-      const mssg=await axios.post("http://localhost:3000/api/posts",formData)
-console.log(mssg.data.mssg)
+      const res=await axios.post("http://localhost:3000/api/posts",formData)
+      if(res.status==200){
+setShowToast(true)
+      }
+
+  }
+  function selectFile(){
+fileInputRef.current?.click()
   }
   return (
     <div>
-<h1 className='w-full flex justify-center font-semibold text-xl py-8'>Create Blogs</h1>
+      <Nav showSearchBar={false}></Nav>
+{showMenu?<Menu></Menu>:null}
+<h1 className='w-full flex justify-center font-semibold text-2xl py-8'>Create Blogs</h1>
 <form className='w-full min-h-screen flex items-center justify-center flex-col gap-4 pb-4' onSubmit={(e)=>e.preventDefault()}> 
 <div className='w-full flex flex-col gap-2 justify-center items-center '>
-  <label className='font-semibold'>Title</label>
-  <input type='text' className='w-[40%] rounded-sm px-4 py-3 border border-gray-400' placeholder='Blog title ...' ref={titleRef}></input>
+  <input type='text' className='w-[70%] rounded-sm px-4 py-2 border border-gray-400' placeholder='Blog title ...' ref={titleRef}></input>
 </div>
-<div>
+<div className='w-[70vw]'>
 <Editor
     apiKey='ttpfj097hsr6g3kfgtuxddsc3tuwulv3j1uys2q10mns7r9l'
     onInit={(event,editor)=>editorRef.current=editor}
     init={{
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount    linkchecker',
       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
       tinycomments_mode: 'embedded',
       tinycomments_author: 'Author name',
@@ -51,14 +67,14 @@ console.log(mssg.data.mssg)
       ],
       ai_request: (request:any, respondWith:any) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
     }}
-    initialValue="Welcome to TinyMCE!"
+    initialValue="Write your Blog Content Here!"
   />
 </div>
-<input type='file' onChange={handleOnChange}/>
-<button className='bg-black text-white rounded  px-8 py-1' onClick={handleData}>Submit</button>
-
+<Button icon={<UploadOutlined />} onClick={selectFile} className='px-24'>Upload Cover</Button>
+<input type='file' onChange={handleOnChange} hidden ref={fileInputRef}/>
+<Button className='bg-[#31caae] text-white rounded  px-32 py-1 mb-8' onClick={handleData} disabled={showToast}>Submit</Button>
 </form>
-
+<Toast toastVal={"Blog Uploaded"} showToast={showToast}/>
     </div>
   )
 }

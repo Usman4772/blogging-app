@@ -1,5 +1,5 @@
 import connectDB from "@/lib/connectDB";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Post from "@/models/posts"
 import { verifyAuth } from "@/lib/auth";
 import { jwtVerify } from "jose";
@@ -14,10 +14,6 @@ try {
   const description=data.get("description")
   const image=data.get("image")
   const imageData=await uploadImages(image,"blogging-app-images")
-
-
-
-
 const userId=await getLoggedInUser(req)
 const user=await User.findOne({_id:userId})
 const post=await Post.create({
@@ -28,8 +24,9 @@ user:user._id
 })
 user.blogs.push(post._id)
 await user.save()
-
+console.log("blog created")
     return NextResponse.redirect(new URL("/",req.url))
+
 } catch (error) {
     console.log(error)
     return NextResponse.redirect(new URL("/create-blog",req.url))
@@ -41,7 +38,7 @@ await user.save()
 export async function GET(){
     connectDB()
 
-    const posts=await Post.find()
+    const posts=await Post.find().populate("user").exec()
     return NextResponse.json({"posts":posts})
 
 }

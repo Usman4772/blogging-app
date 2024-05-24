@@ -16,15 +16,12 @@ const password=formData.get("password")
 const imageData=formData.get("image")
 const image=await uploadImages(imageData,"blogging-app-images") as any
 const image_url=image?.secure_url
-console.log(image_url)
-
-if(username=="" || email =="" || password =="" || image_url =="")return NextResponse.redirect(new URL("/register",req.url))
 const hashedPassword=await hashPassword(password)
     const user=await User.create({username,email,password:hashedPassword,profileImage:image_url})
     const token=createToken(user._id)
-
 cookies().set("jwt",token)
-    return NextResponse.redirect(new URL("/",req.url))
+console.log("user Created")
+return NextResponse.redirect(new URL("/",req.url))
 } catch (error) {
     console.log(error)
     return NextResponse.redirect(new URL("/register",req.url))

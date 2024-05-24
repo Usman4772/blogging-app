@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/details/[id]/router.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/details/[id]/router.js", "src/app/api/posts/route.js", "src/lib/globalContext.js"],
   "exclude": ["node_modules"]
 }
