@@ -8,7 +8,7 @@ export async function POST(req:NextRequest){
         const formData=await req.formData()
         const value=formData.get("value")
         if(typeof value == "string"){
-            const posts = await Post.find({ title: { $regex: new RegExp(value, "i") } });
+            const posts = await Post.find({ title: { $regex: new RegExp(value, "i") } }).populate("user");
             return NextResponse.json({posts})
         }
    

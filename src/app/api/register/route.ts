@@ -20,11 +20,10 @@ const hashedPassword=await hashPassword(password)
     const user=await User.create({username,email,password:hashedPassword,profileImage:image_url})
     const token=createToken(user._id)
 cookies().set("jwt",token)
-console.log("user Created")
-return NextResponse.redirect(new URL("/",req.url))
+return NextResponse.json({"message":"success"})
 } catch (error) {
     console.log(error)
-    return NextResponse.redirect(new URL("/register",req.url))
+    return NextResponse.json({"message":"failure"})
 }
 
 }

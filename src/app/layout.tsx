@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
  
       <Context>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} style={{overflowX:"hidden"}}>{children}</body>
       </Context>
    
    

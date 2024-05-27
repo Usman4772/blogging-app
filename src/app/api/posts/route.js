@@ -12,6 +12,8 @@ try {
   const data=await req.formData()
   const title=data.get("title")
   const description=data.get("description")
+  const category=data.get("category")
+  console.log(category)
   const image=data.get("image")
   const imageData=await uploadImages(image,"blogging-app-images")
 const userId=await getLoggedInUser(req)
@@ -20,16 +22,16 @@ const post=await Post.create({
 title:title,
 description:description,
 cover_url:imageData.secure_url,
+category:category,
 user:user._id
 })
 user.blogs.push(post._id)
 await user.save()
-console.log("blog created")
-    return NextResponse.redirect(new URL("/",req.url))
+return NextResponse.json({"message":"success"})
 
 } catch (error) {
     console.log(error)
-    return NextResponse.redirect(new URL("/create-blog",req.url))
+    return NextResponse.json({"message":"failure"})
 }
 
 }
@@ -37,7 +39,6 @@ console.log("blog created")
 
 export async function GET(){
     connectDB()
-
     const posts=await Post.find().populate("user").exec()
     return NextResponse.json({"posts":posts})
 

@@ -4,6 +4,7 @@ import type { DrawerProps, RadioChangeEvent } from 'antd';
 import { FiMenu } from 'react-icons/fi';
 import axios from 'axios';
 import Link from 'next/link';
+import NextTopLoader from 'nextjs-toploader';
 
 
 function DrawerMenu() {
@@ -46,7 +47,7 @@ checkUser()
     <>
       <Space>
         <Button  onClick={showDrawer}>
-        <FiMenu className='text-2xl' />
+        <FiMenu className='text-xl' />
         </Button>
       </Space>
       <Drawer
@@ -61,12 +62,12 @@ checkUser()
 <Link href="/about" className='relative after:content-[""] after:absolute after:bottom-0 after:left-0 after:bg-[#31caae] after:w-0 after:h-[2px] hover:after:w-full transition-all ease-in '>About</Link>
 <Link href="/contact" className='relative after:content-[""] after:absolute after:bottom-0 after:left-0 after:bg-[#31caae] after:w-0 after:h-[2px] hover:after:w-full transition-all ease-in '>Contact Us</Link>
 {isLoggedIn?(<><Button className='py-1 px-12  rounded  font-semibold text-sm' onClick={logout} loading={logoutLoading}>Logout</Button>
+<NextTopLoader color='#31caae'/>
 <Link href="/create-blog" ><Button className='py-1 px-12 bg-[#31caae] text-white rounded-md font-semibold'>Create Blog</Button></Link></>):<div className='flex gap-2 flex-col justify-center items-center'>
   <Link href="/login"><Button className='px-12' loading={loginLoading}  onClick={()=>setLoginLoading(prev=>!prev)}>Login</Button></Link>
   <Link href="/register"><Button  className='py-1 px-12 bg-[#31caae] rounded text-white' loading={registerLoading} onClick={()=>setRegisterLoading(prev=>!prev)}>Register</Button></Link>
+  <Link href="/login" ><Button className='py-1 px-12 bg-[#31caae] text-white rounded-md font-semibold'>Create Blog</Button></Link>
 </div>}
-
-
 </ul>
       </Drawer>
     </>

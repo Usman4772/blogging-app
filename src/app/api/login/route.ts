@@ -12,14 +12,13 @@ export async function POST(req:any,res:NextResponse){
 const formData=await req.formData()
 const email=formData.get("email")
 const password=formData.get("password")
-
     const user=await login(email,password)
 const token=createToken(user._id)
 cookies().set("jwt",token)
-    return NextResponse.redirect(new URL("/",req.url))
+    return NextResponse.json({"message":"success"})
 } catch (error) {
     console.log(error)
-    return NextResponse.redirect(new URL("/login",req.url))
+    return NextResponse.json({"message":"error"})
 }
 
 }

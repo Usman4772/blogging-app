@@ -21,7 +21,7 @@ if(res.data){
     setToast(res.data.Message)
     setShowToast(true)
     setCommentLoading(false)
-    setComments(prev=>[...prev,res.data.newComment])
+    setComments(prev=>[res.data.newComment,...prev])
     
 }
     }
@@ -30,7 +30,8 @@ if(res.data){
 
 const res=await axios.get(`/api/get-comment/${postId}`)
 if(res.data.post){
-    setComments(res.data.post.comments)
+
+    setComments(res.data.post.comments.reverse())
 }
 
     }
@@ -55,7 +56,7 @@ checkUser()
     <div className='w-full h-max py-4 relative before:absolute before:content-[""] before:w-[95%]  before:h-[1px] before:bg-gray-400 flex flex-col items-center justify-start px-4  '>
         {/* comments */}
         {comments && comments.length>0?comments.map((comment:any,i)=>{
-            return <div className='w-[80vw] min-h-[4rem] py-2 px-4 bg-gray-300 mt-4 rounded-md flex items-start justify-center flex-col gap-2' key={i}>
+            return <div className='w-[80vw] min-h-[4rem] py-2 px-4 bg-gray-200 mt-4 rounded-md flex items-start justify-center flex-col gap-2' key={i}>
             <div className='flex justify-center items-center gap-4'>
             <img src={comment.user.profileImage} className='w-[2rem] h-[2rem] object-cover rounded-full' />
             <h3 className='font-semibold'>{comment.user.username}</h3>
