@@ -38,8 +38,6 @@ checkUser()
   <Link href="/login"><Button className='px-12' loading={loginLoading}  onClick={()=>setLoginLoading(prev=>!prev)}>Login</Button></Link>
   <Link href="/register"><Button  className='py-1 px-20 bg-[#31caae] rounded text-white' loading={registerLoading} onClick={()=>setRegisterLoading(prev=>!prev)}>Register</Button></Link>
 </div>}
-
-
 </ul>
     </div>
   )

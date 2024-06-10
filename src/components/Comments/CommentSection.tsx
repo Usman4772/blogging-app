@@ -48,9 +48,9 @@ checkUser()
     <div className='w-screen h-max py-8 flex flex-col gap-4 px-8 relative before:absolute before:content-[""] before:w-[90vw] before:h-[2px] before:bg-black before:top-4'>
         <Toast toastVal={toast} showToast={showToast}/>
 <h1 className='text-2xl font-semibold text-center w-full font-mono'>Comment Section</h1>
-<section className='w-screen flex items-center justify-start flex-col'>
-    <form className='flex gap-4' onSubmit={(e)=>e.preventDefault()}>
-<input type='text' placeholder='Enter a comment...' className='w-[70vw] h-[2rem] py-1 px-4 rounded-md border border-gray-300 text-sm' ref={commentRef}/>
+<section className='w-[80vw] md:w-screen flex items-center justify-start flex-col'>
+    <form className='flex gap-4 ' onSubmit={(e)=>e.preventDefault()}>
+<input type='text' placeholder='Enter a comment...' className=' w-[60vw] md:w-[70vw] h-[2rem] py-1 px-4 rounded-md border border-gray-300 text-sm' ref={commentRef}/>
 <Button className='bg-[#31caae] text-white' onClick={handleAddComment} disabled={!isLoggedIn} loading={commentLoading}>send</Button>
     </form>
     <div className='w-full h-max py-4 relative before:absolute before:content-[""] before:w-[95%]  before:h-[1px] before:bg-gray-400 flex flex-col items-center justify-start px-4  '>

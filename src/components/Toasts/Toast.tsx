@@ -12,7 +12,6 @@ if(showToast){
 },[showToast])
   return (
     <div>
-      {/* <button onClick={notify} className='bg-black px-4 py-1 text-white'>Notify!</button> */}
       <ToastContainer />
     </div>
   );

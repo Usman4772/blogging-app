@@ -10,7 +10,7 @@ import Post from "@/models/posts"
     connectDB()
 const id=req.url.split("/")[4]
 const post=await Post.findOne({_id:id}).populate("user")
-console.log(post.user.username)
+// console.log(post.user.username)
 
 if(!post){
     if(post.user.username){

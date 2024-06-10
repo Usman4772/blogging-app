@@ -50,7 +50,7 @@ if(response.data.message=="success"){
   setRegisterLoading(false)
   router.push("/")
 }else{
-  setError("Something went wrong!")
+  setError(response.data.message)
   setRegisterLoading(false)
   router.push("/register")
 
@@ -59,10 +59,10 @@ if(response.data.message=="success"){
 
 }
   return (
-    <div className='w-screen h-screen flex justify-between px-4 items-center'>
-     <img src="https://img.freepik.com/premium-vector/data-security-concept-illustration_251005-467.jpg?w=740" alt='Register' className='w-[40%]'/>
-     <div className='w-[60%]  h-full flex items-center justify-center '>
-     <form className='w-[30vw] h-[95vh]  rounded-md border border-gray-400 flex items-center justify-start flex-col py-9 gap-5 relative ' onSubmit={handleSubmit}>
+    <div className='w-screen h-screen flex md:justify-between justify-center px-4 items-center'>
+     <img src="https://img.freepik.com/premium-vector/data-security-concept-illustration_251005-467.jpg?w=740" alt='Register' className='w-[40%] hidden md:block'/>
+     <div className='w-screen md:w-[60%]  h-full flex items-center justify-center '>
+     <form className=' w-full md:w-[30vw] h-[95vh]  rounded-md md:border md:border-gray-400 flex items-center justify-center md:justify-start flex-col py-9 gap-5 relative ' onSubmit={handleSubmit}>
         <h1 className='font-bold text-2xl font-mono'>Register to <Link href="/" className="text-[#31caae]">Blogify</Link></h1>
         {error?<p className="text-red-600 text-sm font-semibold ">{error}</p>:null}
         <div className='w-full flex flex-col px-8 gap-4'>
@@ -75,7 +75,7 @@ if(response.data.message=="success"){
             <input type='file' name="profileImage" onChange={handleOnChange} hidden ref={fileInputRef} accept="image/jpg,image/jpeg,image/avif" required/>
             <Button icon={<UploadOutlined />} onClick={selectFile}> Profile Image</Button>
         </div>
-     <Button  className='absolute bottom-4 bg-[#31caae] text-white text-sm py-2 px-8 font-semibold cursor-pointer rounded-md flex items-center justify-center' loading={registerLoading} onClick={handleSubmit}>Regsiter</Button>
+     <Button  className='absolute bottom-12 md:bottom-4 bg-[#31caae] text-white text-sm py-2 px-8 font-semibold cursor-pointer rounded-md flex items-center justify-center' loading={registerLoading} onClick={handleSubmit}>Regsiter</Button>
      <p>Already have account? <Link href="/login" className="text-[#31caae]">Login</Link></p>
      </form>
      </div>

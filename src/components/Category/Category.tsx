@@ -9,8 +9,8 @@ function Category({category}:any){
       };
 return(
     <Select
-      defaultValue="all"
-      style={{ width: 300 }}
+      defaultValue="All"
+      // style={{ width: 300 }}
       onChange={handleChange}
       options={[
         { value: 'business', label: 'Business' },
@@ -18,6 +18,7 @@ return(
         { value: 'sports', label: 'Sports' },
         {value:'others',label:'others'}
       ]}
+      className='w-[200px] md:w-[300px]'
     />
     
 );

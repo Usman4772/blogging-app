@@ -13,7 +13,7 @@ function Posts() {
     const [error,setError]=useState("")
     const [categories,setCategories]=useState<Array<string>>([])
     const [allPosts,setAllPosts]=useState([])//for filtereing
-    const [currentFilteredIndex,setCurrentFilteredIndex]=useState<number | null>()
+    const [currentFilteredIndex,setCurrentFilteredIndex]=useState<number | null>(null)
     const [currentPage,setCurrentPage]=useState<number>(1)
     const productsPerPage=3;
     function handleSetCategory(posts:any){
@@ -40,7 +40,6 @@ slicePosts(res.data.posts)
 }catch(e:any){
     setLoading(false)
     setError(e.message)
-console.log(e)
 }
 
     }
@@ -81,10 +80,10 @@ categories.forEach((_,index)=>{
     }
   
 if(loading)return <div className="w-screen h-[70vh] flex justify-center items-center"><Spin size="large" /></div>
-if(error) return <div className="w-screen h-[70vh] flex justify-center items-center"></div>
+if(error) return <div className="w-screen h-[70vh] flex justify-center items-center">Something Went wrong!!</div>
   return (
     <div className="w-screen flex flex-col">
-        <div className="w-screen flex justify-center items-center gap-8">
+        <div className="w-screen flex justify-center items-center gap-6 md:gap-8">
             <h1 onClick={handleAll} className="capitalize cursor-pointer relative after:content-[''] after:absolute after:w-0 after:bottom-0 after:left-0 after:h-[2px] hover:after:w-full after:bg-[#31caae] " style={{color:currentFilteredIndex !==null?"black":'aqua'}}>All</h1>
   {categories && categories.length>0 ? categories.map((categ:any,i:number)=>{
     return <h1 style={{color:i==currentFilteredIndex?"aqua":"black"}} className="capitalize cursor-pointer relative after:content-[''] after:absolute after:w-0 after:bottom-0 after:left-0 after:h-[2px] hover:after:w-full after:bg-[#31caae] " onClick={()=>filterPosts(categ,i)} key={i}>{categ}</h1>
@@ -93,7 +92,7 @@ if(error) return <div className="w-screen h-[70vh] flex justify-center items-cen
     <div className="w-screen flex gap-4 justify-center items-center flex-wrap py-4 ">
         {
         posts && posts.length>0?posts.map((post:any,i:number)=>{
-            return <Link href={`/posts/${post._id}`} key={i} className="w-[400px] h-[450px] bg-white rounded cursor-pointer  flex justify-start items-start flex-col overflow-hidden gap-4">
+            return <Link href={`/posts/${post._id}`} key={i} className="w-[380px] md:w-[400px] h-[450px] bg-white rounded cursor-pointer  flex justify-start items-start flex-col overflow-hidden gap-4">
                 <NextTopLoader color="#31caae"/>
                 <img src={post.cover_url} className="w-full h-[250px] object-cover rounded-lg"/>
                 <h2 className="font-bold font-sans text-xl overflow-hidden whitespace-nowrap text-ellipsis w-full ">{post.title}</h2>

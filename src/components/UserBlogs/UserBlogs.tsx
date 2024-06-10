@@ -3,7 +3,6 @@ import Link from "next/link"
 import NextTopLoader from "nextjs-toploader"
 import { BsPostcard } from "react-icons/bs";
 function UserBlogs({blogs,user}:any) {
-console.log(blogs)
   return (
     <div className="w-screen h-max flex items-center justify-center flex-wrap mt-12 flex-col gap-8">
         <h1 className="text-2xl relative after:absolute after:bg-[#ff2256] after:w-full after:origin-center after:h-[2px] after:left-0 after:bottom-[-5px] "><BsPostcard/></h1>

@@ -83,9 +83,9 @@ setCategory(value)
 <h1 className='w-full flex justify-center font-semibold text-2xl py-8'>Create Blogs</h1>
 <form className='w-full min-h-screen flex items-center justify-center flex-col gap-4 pb-4' onSubmit={(e)=>e.preventDefault()}> 
 <div className='w-full flex flex-col gap-2 justify-center items-center '>
-  <input type='text' className='w-[70%] rounded-sm px-4 py-2 border border-gray-400' placeholder='Blog title ...' ref={titleRef} required></input>
+  <input type='text' className='w-[90%] md:w-[70%] rounded-sm px-4 py-2 border border-gray-400' placeholder='Blog title ...' ref={titleRef} required></input>
 </div>
-<div className='w-[70vw]'>
+<div className=' w-[90vw] md:w-[70vw]'>
 <Editor
     apiKey='ttpfj097hsr6g3kfgtuxddsc3tuwulv3j1uys2q10mns7r9l'
     onInit={(event,editor)=>editorRef.current=editor}

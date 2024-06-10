@@ -21,9 +21,12 @@ const hashedPassword=await hashPassword(password)
     const token=createToken(user._id)
 cookies().set("jwt",token)
 return NextResponse.json({"message":"success"})
-} catch (error) {
-    console.log(error)
-    return NextResponse.json({"message":"failure"})
+} catch (error:any) {
+    console.log(error.code)
+    if(error.code==11000){
+        return NextResponse.json({"message":"This email is alread taken!."})
+    }
+    return NextResponse.json({"message":"Something went Wrong!"})
 }
 
 }

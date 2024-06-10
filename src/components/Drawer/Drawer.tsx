@@ -5,9 +5,19 @@ import { FiMenu } from 'react-icons/fi';
 import axios from 'axios';
 import Link from 'next/link';
 import NextTopLoader from 'nextjs-toploader';
+import { Input } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
+const { Search } = Input;
+const suffix = (
+  <AudioOutlined
+    style={{
+      fontSize: 16,
+      color: '#1677ff',
+    }}
+  />
+)
 
-
-function DrawerMenu() {
+function DrawerMenu({onSearch,handleOnChange,searchLoading,showSearchBar}:any) {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<DrawerProps['placement']>('right');
   const [isLoggedIn,setIsLoggedIn]=useState<Boolean>(false)
@@ -58,6 +68,7 @@ checkUser()
         open={open}
       >
 <ul className='w-full h-full flex flex-col justify-start items-center gap-4 py-24'>
+ {showSearchBar? <Search placeholder="input search text " onSearch={onSearch} style={{ width: 200 }} onChange={handleOnChange} loading={searchLoading} className='md:hidden block'/> :null}
 <Link href="/" className='relative after:content-[""] after:absolute after:bottom-0 after:left-0 after:bg-[#31caae] after:w-0 after:h-[2px] hover:after:w-full transition-all ease-in '>Home</Link>
 <Link href="/about" className='relative after:content-[""] after:absolute after:bottom-0 after:left-0 after:bg-[#31caae] after:w-0 after:h-[2px] hover:after:w-full transition-all ease-in '>About</Link>
 <Link href="/contact" className='relative after:content-[""] after:absolute after:bottom-0 after:left-0 after:bg-[#31caae] after:w-0 after:h-[2px] hover:after:w-full transition-all ease-in '>Contact Us</Link>
