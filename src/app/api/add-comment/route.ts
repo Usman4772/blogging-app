@@ -26,11 +26,8 @@ if(user){
 }
 
 }
-export async function GET(req:NextResponse){
-    console.log("here")
-console.log(req)
-return NextResponse.json({"Message":"All comments"})
-}
+
+
 async function getLoggedInUser(req:any){
     const token=req.cookies.get("jwt")?.value
 if(token){
