@@ -44,7 +44,7 @@ async function handleSubmit(){
   if(profileImage){
     formData.append("image",profileImage)
   }
-  const response=await axios.post("api/register",formData)
+  const response=await axios.post("/api/register",formData)
 if(response.data.message=="success"){
   setError("")
   setRegisterLoading(false)

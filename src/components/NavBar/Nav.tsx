@@ -39,7 +39,7 @@ setPosts(res.data.posts)
 }
 async function handleOnChange(e:ChangeEvent<HTMLInputElement>){
   if(e.target.value==""){
-    const res=await axios.get("http://localhost:3000/api/posts")  
+    const res=await axios.get("/api/posts")  
     if(res.data){
       setPosts(res.data.posts)
     }

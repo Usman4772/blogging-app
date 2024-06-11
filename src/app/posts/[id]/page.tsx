@@ -14,7 +14,7 @@ import { Spin } from 'antd'
 async function getDetails(id:any){
   try{
   setLoading(true)
-   const res=await axios.get(`http://localhost:3000/api/${id}`)
+   const res=await axios.get(`/api/${id}`)
  if(res.data){
   setLoading(false)
   setData(res)

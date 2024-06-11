@@ -30,7 +30,7 @@ if(posts.length>0){
     async function getAllPosts(){
 try{
     setLoading(true)
-    const res=await axios.get("http://localhost:3000/api/posts")   
+    const res=await axios.get("/api/posts")   
 
 slicePosts(res.data.posts)
  setAllPosts(res.data.posts)
