@@ -59,10 +59,10 @@ getLoggedInUser()
 return (
   <div className="w-screen h-[15vh] bg-white border border-slate-300 flex  gap-12 justify-between items-center px-10 md:px-20 z-50 fixed">{user?<Link href={`profile/${user._id}`} className='flex items-center justify-center gap-3'>
     <NextTopLoader color='#31caae'/>
-    <img src={user?.profileImage} className='w-[2rem] h-[2rem] rounded-full'/>
+    <img src={user?.profileImage} className='w-[2rem] h-[2rem] rounded-full object-cover'/>
     <h3>{user?.username}</h3>
   </Link>:null}
-    {showSearchBar?<Search placeholder="input search text " onSearch={onSearch} style={{ width: 200 }} onChange={handleOnChange} loading={searchLoading} className='hidden md:block'/>  :null}
+    {showSearchBar?<Search placeholder="Search here " onSearch={onSearch} style={{ width: 200 }} onChange={handleOnChange} loading={searchLoading} className='hidden md:block'/>  :null}
     <Link href="/"><h1 className='font-semibold text-2xl  font-mono'>Blogify</h1></Link>
 
 

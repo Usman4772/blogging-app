@@ -2,7 +2,8 @@ const mongoose=require("mongoose")
 
 export default async function(){
     try{
-mongoose.connect("mongodb://127.0.0.1:27017/next-blogging-application")
+mongoose.connect("mongodb+srv://admin:usman47@cluster0.ha0a6k7.mongodb.net/blogApp")
+console.log("connected to database")
     }catch(e){
 console.log(e)
     }

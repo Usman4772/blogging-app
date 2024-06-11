@@ -98,7 +98,7 @@ if(error) return <div className="w-screen h-[70vh] flex justify-center items-cen
                 <h2 className="font-bold font-sans text-xl overflow-hidden whitespace-nowrap text-ellipsis w-full ">{post.title}</h2>
                 <p className="text-sm text-gray-700">{post.description.replace(/<[^>]*>/g, '').slice(0,100)}...</p>
                <div className="flex gap-2 items-center justify-center ">
-            <img src={post.user.profileImage} className="w-[2rem] h-[2rem]" style={{borderRadius:"50%"}}/>
+            <img src={post.user.profileImage} className="w-[2rem] h-[2rem] object-cover" style={{borderRadius:"50%"}}/>
             <h2>{post.user.username}</h2>
                </div>
             </Link>
