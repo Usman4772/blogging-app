@@ -4,7 +4,6 @@ import Comment from "@/models/comment";
 import User from "@/models/users";
 import Post from "@/models/posts";
 export async function POST(req:NextRequest){
-
     const formData=await req.formData()
   const commentBody=formData.get("value")
   const postId=formData.get("postId")

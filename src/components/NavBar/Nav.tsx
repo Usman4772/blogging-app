@@ -51,7 +51,7 @@ async function handleOnChange(e:ChangeEvent<HTMLInputElement>){
 }
 async function getLoggedInUser(){
 const res=await axios.get("/api/get-user")
-if(res.status==200){
+if(res.status==200 && res.data!==null ){
   setUser(res.data)
   setShowProfile(true)
 }
@@ -64,7 +64,7 @@ return (
   <div className="w-screen h-[15vh] bg-white border border-slate-300 flex  gap-12 justify-between items-center px-10 md:px-20 z-50 fixed">
     {showProfile && user ?<Link href={`profile/${user._id}`} className='flex items-center justify-center gap-3'>
     <NextTopLoader color='#31caae'/>
-    {showProfile?<><Image src={user?.profileImage} alt='userImage' className='w-[2rem] h-[2rem] rounded-full object-cover'/>
+    {showProfile?<><img src={user?.profileImage} alt='userImage'  className='w-[2rem] h-[2rem] rounded-full object-cover'/>
     <h3>{user?.username}</h3></>:null}
 
   </Link>:null}
