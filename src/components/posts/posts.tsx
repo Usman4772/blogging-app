@@ -92,9 +92,9 @@ if(error) return <div className="w-screen h-[70vh] flex justify-center items-cen
     <div className="w-screen flex gap-4 justify-center items-center flex-wrap py-4 ">
         {
         posts && posts.length>0?posts.map((post:any,i:number)=>{
-            return <Link href={`/posts/${post._id}`} key={i} className="w-[380px] md:w-[400px] h-[450px] bg-white rounded cursor-pointer  flex justify-start items-start flex-col overflow-hidden gap-4">
+            return <Link href={`/posts/${post._id}`} key={i} className="w-[380px] md:w-[400px] h-[450px] bg-white rounded cursor-pointer  flex justify-start items-start flex-col overflow-hidden gap-4 px-4 pb-8">
                 <NextTopLoader color="#31caae"/>
-                <img src={post.cover_url} className="w-full h-[250px] object-cover rounded-lg"/>
+                <div className="flex items-center justify-center w-full"><img src={post.cover_url} className="w-full h-[200px] md:h-[250px] object-cover rounded-lg"/></div>
                 <h2 className="font-bold font-sans text-xl overflow-hidden whitespace-nowrap text-ellipsis w-full ">{post.title}</h2>
                 <p className="text-sm text-gray-700">{post.description.replace(/<[^>]*>/g, '').slice(0,100)}...</p>
                <div className="flex gap-2 items-center justify-center ">

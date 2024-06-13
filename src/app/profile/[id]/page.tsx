@@ -20,7 +20,7 @@ if(res.data.user){
     }
     useEffect(()=>{
  getUserPosts()
-    },[])
+    },[id])
   return (
     <div className="">
       <Nav showSearchBar={false}/>

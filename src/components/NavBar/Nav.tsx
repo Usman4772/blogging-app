@@ -27,6 +27,7 @@ function Nav({showSearchBar}:any){
 const {setPosts}=useContext(GlobalContext)
 const [user,setUser]=useState<Object | any>()
 const [searchLoading,setSearchLoading]=useState(false)
+const [showProfile,setShowProfile]=useState<Boolean>(false)
 const onSearch: SearchProps['onSearch'] =async (value)=>{
   const formData=new FormData()
   formData.append("value",value)
@@ -42,6 +43,7 @@ async function handleOnChange(e:ChangeEvent<HTMLInputElement>){
     const res=await axios.get("/api/posts")  
     if(res.data){
       setPosts(res.data.posts)
+
     }
   }
 
@@ -50,6 +52,7 @@ async function getLoggedInUser(){
 const res=await axios.get("/api/get-user")
 if(res.status==200){
   setUser(res.data)
+  setShowProfile(true)
 }
 }
 useEffect(()=>{
@@ -57,13 +60,14 @@ getLoggedInUser()
 },[])
 
 return (
-  <div className="w-screen h-[15vh] bg-white border border-slate-300 flex  gap-12 justify-between items-center px-10 md:px-20 z-50 fixed">{user?<Link href={`profile/${user._id}`} className='flex items-center justify-center gap-3'>
+  <div className="w-screen h-[15vh] bg-white border border-slate-300 flex  gap-12 justify-between items-center px-10 md:px-20 z-50 fixed">
+    {showProfile && user ?<Link href={`profile/${user._id}`} className='flex items-center justify-center gap-3'>
     <NextTopLoader color='#31caae'/>
-    <img src={user?.profileImage} className='w-[2rem] h-[2rem] rounded-full object-cover'/>
-    <h3>{user?.username}</h3>
+<img src={user?.profileImage} className='w-[2rem] h-[2rem] rounded-full object-cover'/>
+  <h3>{user?.username}</h3>
   </Link>:null}
     {showSearchBar?<Search placeholder="Search here " onSearch={onSearch} style={{ width: 200 }} onChange={handleOnChange} loading={searchLoading} className='hidden md:block'/>  :null}
-    <Link href="/"><h1 className='font-semibold text-2xl  font-mono'>Blogify</h1></Link>
+    <Link href="/"><h1 className='font-semibold text-xl md:text-2xl  font-mono'>Blogify</h1></Link>
 
 
     <div className='flex items-center h-full'>

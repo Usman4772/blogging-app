@@ -1,6 +1,7 @@
 import React from 'react'
 
 function UserProfile({user}:any) {
+
   return (
     <div className='pt-24 w-screen flex justify-center'>
     <main className="profile">
