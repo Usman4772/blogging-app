@@ -50,7 +50,7 @@ async function handleOnChange(e:ChangeEvent<HTMLInputElement>){
 
 }
 async function getLoggedInUser(){
-const res=await axios.get("/api/get-user")
+const res=await axios.get("/api/get-user", { withCredentials: true })
 if(res.status==200 && res.data!==null ){
   setUser(res.data)
   setShowProfile(true)
